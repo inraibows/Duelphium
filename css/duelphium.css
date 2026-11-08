@@ -1,0 +1,447 @@
+:root {
+  --bg-1: #070b1f;
+  --bg-2: #101a4a;
+  --gold: #d9b45a;
+  --gold-soft: rgba(217, 180, 90, .45);
+  --zone: rgba(120, 170, 255, .10);
+  --zone-line: rgba(140, 190, 255, .55);
+  --me: #3fd0ff;
+  --foe: #ff5a6e;
+}
+
+html, body { height: 100%; }
+
+body {
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  color: #e8eeff;
+  background: radial-gradient(ellipse at 50% 50%, var(--bg-2) 0%, var(--bg-1) 70%) fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100dvh;
+  padding: 1vh 12px;
+  overflow: hidden;
+}
+
+.pvidaop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+  flex: none;
+}
+.pvidaop h1 { font-size: 4vh; }
+
+.maoop {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex: none;
+  min-height: 12vh;
+}
+
+.mesa {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
+  width: 90%;
+  margin: 1vh 0;
+}
+
+.campo {
+  flex: 1;
+  min-height: 0;
+  width: 70%;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1vh 10px;
+  padding: 1.5vh 14px;
+  margin: 1vh 0;
+  border: 1px solid rgba(217, 180, 90, .45);
+}
+.mesa .campo {
+  flex: 1;
+  width: auto;
+  margin: 0;
+}
+
+.carta {
+  height: 12vh;
+  width: 8vh;
+  aspect-ratio: 2 / 3;
+  border-radius: 6px;
+  border: 2px solid #1a0f06;
+  background-color: green;
+  padding: 0;
+  font: inherit;
+  appearance: none;
+  cursor: pointer;
+  transform-origin: center bottom;
+  transition: transform .2s ease, box-shadow .2s ease,
+              width .3s ease, margin .3s ease, opacity .25s ease;
+}
+
+.zona {
+  height: 100%;
+  aspect-ratio: 5 / 7;
+  justify-self: center;
+  min-height: 0;
+  border: 1px solid rgba(140, 190, 255, .55);
+  background: rgba(120, 170, 255, .10);
+  border-radius: 6px;
+  padding: 0;
+  appearance: none;
+  font: inherit;
+  color: inherit;
+    transition: transform .2s ease, box-shadow .2s ease;
+  cursor: pointer;
+}
+
+.extra {
+  height: 100%;
+  aspect-ratio: 5 / 7;
+  justify-self: center;
+  min-height: 0;
+  border: 1px solid rgba(140, 190, 255, .55);
+  border-radius: 6px;
+  background-color: blue;
+}
+
+.Baralho {
+  height: 100%;
+  aspect-ratio: 5 / 7;
+  justify-self: center;
+  min-height: 0;
+  padding: 0;
+  appearance: none;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  font-size: 3vh;
+  color: var(--gold);
+  text-shadow: 0 1px 4px #000;
+  border: 2px solid var(--gold);
+  border-radius: 6px;
+  background: repeating-linear-gradient(45deg, #5a2a0e 0 6px, #7a3b12 6px 12px);
+  box-shadow: 2px 2px 0 #3a1a08, 4px 4px 0 #2a1306;
+  transition: transform .15s ease;
+}
+
+.mago-negro {
+  background: url("../imagens/mago-negro.jpg") center / 100% 100% no-repeat,
+              linear-gradient(160deg, #6a2fb0, #2a0d4d);
+  border-color: #9b5de5;
+}
+.dragao-negro {
+  background: url("../imagens/dragao-negro.jpg") center / 100% 100% no-repeat,
+              linear-gradient(160deg, #3a3a44, #0a0a0f);
+  border-color: #c0213a;
+}
+.dragao-branco {
+  background: url("../imagens/dragao-branco.jpg") center / 100% 100% no-repeat,
+              linear-gradient(160deg, #ffffff, #a9c8f0);
+  border-color: #6fa8ff;
+}
+.guerreiro {
+  background: url("../imagens/maga-negra.jpg") 45% center / cover no-repeat,
+              linear-gradient(160deg, #b01e2c, #3d0810);
+  border-color: #f3c27a;}
+.exodia-cabeca {
+  background: url("../imagens/exodia-cabeça.jpg") center / 100% 100% no-repeat,
+              linear-gradient(160deg, #f0c24a, #5a3b00);
+  border-color: #ffe08a;
+}
+.exodia-braco-direito {
+  background: url("../imagens/braço-direito.jpg") center / 100% 100% no-repeat,
+              linear-gradient(160deg, #d9a93a, #4a3000);
+  border-color: #ffe08a;
+}
+.exodia-braco-esquerdo {
+  background: url("../imagens/exodia-braço-esquerdo.jpg") center / 100% 100% no-repeat,
+              linear-gradient(160deg, #d9a93a, #4a3000);
+  border-color: #ffe08a;
+}
+.exodia-perna-direita {
+  background: url("../imagens/perna-direiita.jpg") center / 100% 100% no-repeat,
+              linear-gradient(160deg, #c99a30, #3f2800);
+  border-color: #ffe08a;
+}
+.exodia-perna-esquerda {
+  background: url("../imagens/exodia-perna-esquerda.jpg") center / 100% 100% no-repeat,
+              linear-gradient(160deg, #c99a30, #3f2800);
+  border-color: #ffe08a;
+}
+
+
+.carta:hover {
+  transform: scale(1.35) translateY(-6px);
+  z-index: 10;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, .7), 0 0 14px rgba(233, 196, 106, .6);
+}
+
+.carta.selecionada {
+  transform: scale(1.35) translateY(-14px);
+  z-index: 11;
+  border-color: #f3e2b4;
+  box-shadow:
+    0 0 0 2px var(--gold),
+    0 0 22px rgba(217, 180, 90, .9),
+    0 14px 26px rgba(0, 0, 0, .7);
+}
+
+
+.carta.vazia {
+  width: 0;
+  margin: 0 -4px;
+  border-width: 0;
+  opacity: 0;
+  transform: scale(.5);
+  pointer-events: none;
+  box-shadow: none;
+}
+
+.zona:not(.ocupada):hover { background: rgba(120, 170, 255, .22); }
+
+.zona.ocupada {
+  cursor: default;
+  box-shadow: 0 0 12px rgba(217, 180, 90, .6);
+}
+
+.Baralho:hover    { transform: translateY(-3px); }
+.Baralho:active   { transform: translateY(1px); }
+.Baralho:disabled { opacity: .4; cursor: not-allowed; box-shadow: none; }
+
+.turno {
+  align-self: center;
+  width: 14vh;
+  padding: 2vh 1vh;
+  appearance: none;
+  font: inherit;
+  font-weight: 700;
+  font-size: 2.2vh;
+  color: #0a0f24;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .3s ease, box-shadow .3s ease;
+}
+.turno-me { background: var(--me);  box-shadow: 0 0 18px var(--me); }
+.turno-op { background: var(--foe); box-shadow: 0 0 18px var(--foe); }
+.turno:active { transform: scale(.96); }
+
+.zona.atacante {
+  position: relative;
+  z-index: 5;
+  border-color: var(--foe);
+}
+
+.zona.atacante::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border: 2px solid var(--foe);
+  border-radius: 6px;
+  pointer-events: none;
+  animation: pulsar-ataque 1s ease-in-out infinite;
+}
+
+@keyframes pulsar-ataque {
+  0%, 100% {
+    box-shadow: 0 0 14px rgba(255, 90, 110, .6);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 90, 110, 1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zona.atacante { animation: none; }
+}
+.linha-mao {
+  position: relative;
+  width: 90%;
+  flex: none;
+}
+.linha-mao .maoop { width: 100%; }
+ 
+.cemiterio {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  height: 12vh;
+  aspect-ratio: 2 / 3;
+  padding: 0;
+  overflow: hidden;
+  font: inherit;
+  appearance: none;
+  cursor: pointer;
+  color: var(--gold);
+  background: rgba(5, 10, 35, .6);
+  border: 2px dashed var(--gold-soft);
+  border-radius: 6px;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.cemiterio:hover { border-color: var(--gold); box-shadow: 0 0 14px rgba(217, 180, 90, .6); }
+.cemiterio:disabled { opacity: .4; cursor: not-allowed; box-shadow: none; }
+ 
+.cemiterio .topo {
+  position: absolute;
+  inset: 0;
+}
+.cemiterio .rotulo,
+.cemiterio .qtd {
+  position: absolute;
+  z-index: 2;
+  padding: 0 .8vh;
+  font-size: 1.5vh;
+  font-weight: 700;
+  color: var(--gold);
+  background: rgba(0, 0, 0, .7);
+  border-radius: 4px;
+}
+.cemiterio .rotulo { top: 4%; left: 50%; transform: translateX(-50%); }
+.cemiterio .qtd { bottom: 4%; right: 6%; }
+ 
+.magica {
+  position: relative;
+  height: 100%;
+  aspect-ratio: 5 / 7;
+  justify-self: center;
+  min-height: 0;
+  padding: 0;
+  font: inherit;
+  color: #cdb6ff;
+  appearance: none;
+  cursor: pointer;
+  border: 1px dashed #9b5de5;
+  border-radius: 6px;
+  background: rgba(155, 93, 229, .12);
+  transition: background .2s ease, box-shadow .2s ease;
+}
+.magica:not(.ocupada)::before {
+  content: "Mágica";
+  font-size: 1.6vh;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+.magica:not(.ocupada):hover { background: rgba(155, 93, 229, .28); }
+.magica.ocupada {
+  border-style: solid;
+  box-shadow: 0 0 14px rgba(155, 93, 229, .8);
+}
+.magica:disabled { opacity: .5; cursor: not-allowed; }
+ 
+
+.raio-divino {
+  background: url("../imagens/Queda\ de\ Raio!.jpg") center / 100% 100% no-repeat,
+              linear-gradient(160deg, #ffe66d, #1f6fd1);
+  border-color: #ffe66d;
+}
+.cura-sagrada {
+  background: url("../imagens/Caridade\ Graciosa.jpg") center / 100% 100% no-repeat,
+              linear-gradient(160deg, #8ef0b0, #14705a);
+  border-color: #8ef0b0;
+}
+.pote-da-ganancia {
+  background: url("../imagens/pote-da-ganancia.jpg") center / 100% 100% no-repeat,
+              linear-gradient(160deg, #d6a3ff, #4b1a7a);
+  border-color: #d6a3ff;
+}
+ 
+
+ 
+.raio-divino,
+.cura-sagrada,
+.pote-da-ganancia,
+.exodia-cabeca,
+.exodia-braco-direito,
+.exodia-braco-esquerdo,
+.exodia-perna-direita,
+.exodia-perna-esquerda { position: relative; }
+ 
+.raio-divino::after,
+.cura-sagrada::after,
+.pote-da-ganancia::after,
+.exodia-cabeca::after,
+.exodia-braco-direito::after,
+.exodia-braco-esquerdo::after,
+.exodia-perna-direita::after,
+.exodia-perna-esquerda::after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6%;
+  padding: 0 2px;
+  text-align: center;
+  font-size: 1.5vh;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #fff;
+  text-shadow: 0 1px 3px #000;
+}
+.voltar,
+.dica-botao {
+  position: fixed;
+  top: 1vh;
+  z-index: 40;
+  padding: .6vh 1.6vh;
+  font: inherit;
+  font-weight: 700;
+  font-size: 2vh;
+  text-decoration: none;
+  color: var(--gold);
+  background: rgba(5, 10, 35, .85);
+  border: 1px solid var(--gold-soft);
+  border-radius: 6px;
+  cursor: pointer;
+  appearance: none;
+}
+.voltar { left: 12px; }
+.dica-botao { right: 12px; }
+.voltar:hover,
+.dica-botao:hover { border-color: var(--gold); box-shadow: 0 0 12px rgba(217, 180, 90, .6); }
+.dica-botao:disabled { opacity: .4; cursor: not-allowed; box-shadow: none; }
+
+.caixa-dica {
+  display: none;
+  position: fixed;
+  top: 6.5vh;
+  right: 12px;
+  z-index: 50;
+  width: min(300px, 80vw);
+  padding: 1.6vh 2vh;
+  background: rgba(5, 10, 35, .96);
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .7);
+}
+.caixa-dica.aberta { display: block; }
+
+.caixa-dica #contador-dica {
+  display: block;
+  margin-bottom: .8vh;
+  font-size: 1.7vh;
+  font-weight: 700;
+  color: var(--gold);
+}
+.caixa-dica #texto-dica { font-size: 2vh; line-height: 1.4; }
+
+.caixa-dica .fechar {
+  position: absolute;
+  top: .4vh;
+  right: 1vh;
+  padding: 0 .6vh;
+  font: inherit;
+  font-size: 2.6vh;
+  color: #e8eeff;
+  background: none;
+  border: none;
+  cursor: pointer;
+}

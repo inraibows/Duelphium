@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duelo</title>
+    <link rel="stylesheet" href="../css/duelphium.css">
+</head>
+
+<body>
+    <a class="voltar" href="../index.html">Início</a>
+    <button type="button" class="dica-botao" id="botao-dica" onclick="mostrarDica()">Dicas</button>
+    <div class="caixa-dica" id="caixa-dica" data-indice="0">
+        <button type="button" class="fechar" aria-label="Fechar dica" onclick="fecharDica()">×</button>
+        <span id="contador-dica"></span>
+        <p id="texto-dica"></p>
+    </div>
+
+    <div class="pvidaop">
+        <div>
+            <h1>Oponente</h1>
+        </div>
+<div>
+    <h1 data-valor="0" id="contaturno">Turno:1</h1>
+</div>
+        <div>
+            <h1 id="pontosop">7000</h1>
+        </div>
+    </div>
+
+    <div class="linha-mao">
+        <div class="maoop" id="maop">
+            <button type="button" class="carta vazia" onclick="selecionarCarta(this,'op')" id="cartaop1"></button>
+            <button type="button" class="carta vazia" onclick="selecionarCarta(this,'op')" id="cartaop2"></button>
+            <button type="button" class="carta vazia" onclick="selecionarCarta(this,'op')" id="cartaop3"></button>
+            <button type="button" class="carta vazia" onclick="selecionarCarta(this,'op')" id="cartaop4"></button>
+            <button type="button" class="carta vazia" onclick="selecionarCarta(this,'op')" id="cartaop5"></button>
+        </div>
+        <button type="button" class="cemiterio" id="cemiterioop" data-qtd="0" onclick="descartar('op')">
+            <span class="topo" id="topoop"></span>
+            <span class="rotulo">Cemitério</span>
+            <span class="qtd" id="qtdop">0</span>
+        </button>
+    </div>
+
+    <div class="mesa">
+        <div class="campo">
+            <button type="button" class="magica" id="extraop" onclick="jogarMagica(this,'op')"></button>
+            <button type="button" class="zona" id="zonaop2"
+                onclick="selecionarmonstro(this,'op'); deploy(this,'op',0); ataq(this,'op',0)"></button>
+            <button type="button" class="zona" id="zonaop3"
+                onclick="selecionarmonstro(this,'op'); deploy(this,'op',1); ataq(this,'op',1)"></button>
+            <button type="button" class="zona" id="zonaop4"
+                onclick="selecionarmonstro(this,'op'); deploy(this,'op',2); ataq(this,'op',2)"></button>
+            <button type="button" class="zona" id="zonaop5"
+                onclick="selecionarmonstro(this,'op'); deploy(this,'op',3); ataq(this,'op',3)"></button>
+            <button type="button" class="zona" id="zonaop6"
+                onclick="selecionarmonstro(this,'op'); deploy(this,'op',4); ataq(this,'op',4)"></button>
+            <button type="button" class="Baralho" id="baralhoop" onclick="comprarCarta('op')"></button>
+
+            <button type="button" class="Baralho" id="baralhome" onclick="comprarCarta('me')"></button>
+            <button type="button" class="zona" id="zona2"
+                onclick="selecionarmonstro(this,'me'); deploy(this,'me',0); ataq(this,'me',0)"></button>
+            <button type="button" class="zona" id="zona3"
+                onclick="selecionarmonstro(this,'me'); deploy(this,'me',1); ataq(this,'me',1)"></button>
+            <button type="button" class="zona" id="zona4"
+                onclick="selecionarmonstro(this,'me'); deploy(this,'me',2); ataq(this,'me',2)"></button>
+            <button type="button" class="zona" id="zona5"
+                onclick="selecionarmonstro(this,'me'); deploy(this,'me',3); ataq(this,'me',3)"></button>
+            <button type="button" class="zona" id="zona6"
+                onclick="selecionarmonstro(this,'me'); deploy(this,'me',4); ataq(this,'me',4)"></button>
+            <button type="button" class="magica" id="extrame" onclick="jogarMagica(this,'me')"></button>
+        </div>
+
+        <button type="button" class="turno turno-me" id="turno"
+            data-comprou="nao" data-jogou="nao" data-atacou="nao" data-magica="nao"
+            onclick="trocarTurno()">Seu turno</button>
+    </div>
+
+    <div class="linha-mao">
+        <div class="maoop maome" id="maome">
+            <button type="button" class="carta vazia" id="carta1" onclick="selecionarCarta(this,'me')"></button>
+            <button type="button" class="carta vazia" id="carta2" onclick="selecionarCarta(this,'me')"></button>
+            <button type="button" class="carta vazia" id="carta3" onclick="selecionarCarta(this,'me')"></button>
+            <button type="button" class="carta vazia" id="carta4" onclick="selecionarCarta(this,'me')"></button>
+            <button type="button" class="carta vazia" id="carta5" onclick="selecionarCarta(this,'me')"></button>
+        </div>
+        <button type="button" class="cemiterio" id="cemiteriome" data-qtd="0" onclick="descartar('me')">
+            <span class="topo" id="topome"></span>
+            <span class="rotulo">Cemitério</span>
+            <span class="qtd" id="qtdme">0</span>
+        </button>
+    </div>
+
+    <div class="pvidaop">
+        <div>
+            <h1>Você</h1>
+        </div>
+
+        <div>
+            <h1 id="pontos">7000</h1>
+        </div>
+    </div>
+
+    <script src="../js/duelphium.js"></script>
+</body>
+
+</html>

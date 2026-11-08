@@ -1,0 +1,55 @@
+:root {
+  --bg-1: #070b1f;
+  --bg-2: #101a4a;
+  --gold: #d9b45a;
+  --gold-soft: rgba(217, 180, 90, .45);
+}
+
+* { box-sizing: border-box; margin: 0; }
+
+body {
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  color: #e8eeff;
+  background: radial-gradient(ellipse at 50% 50%, var(--bg-2) 0%, var(--bg-1) 70%) fixed;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.inicio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5vh;
+  text-align: center;
+}
+
+.titulo {
+  font-family: "Palatino Linotype", Georgia, serif;
+  font-size: clamp(2.4rem, 9vw, 5.5rem);
+  letter-spacing: .06em;
+  color: var(--gold);
+  text-shadow: 0 0 24px rgba(217, 180, 90, .45), 0 4px 0 rgba(0, 0, 0, .5);
+}
+
+.jogar {
+  padding: 1.4rem 4.5rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #1a0f06;
+  background: linear-gradient(#e6b24f, #9a6420);
+  border: 2px solid #f3e2b4;
+  border-radius: 8px;
+  box-shadow: 0 0 26px rgba(217, 180, 90, .55), 0 8px 18px rgba(0, 0, 0, .6);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.jogar:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 0 38px rgba(217, 180, 90, .85), 0 12px 22px rgba(0, 0, 0, .6);
+}
+
+
+
