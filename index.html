@@ -12,11 +12,18 @@
     <main class="inicio">
         <h1 class="titulo">Duelphium</h1>
 
-        <a class="jogar" href="html/duelphium.html">Jogar</a>
+        <div class="nomes">
+            <input type="text" id="nome-me" class="campo-nome" placeholder="Nome do jogador 1" maxlength="15">
+            <input type="text" id="nome-op" class="campo-nome" placeholder="Nome do jogador 2" maxlength="15">
+            <button type="button" class="btn-nomes" onclick="lerNomes()">Confirmar nomes</button>
+            <p id="msg-nomes" class="msg-nomes"></p>
+        </div>
 
+        <a onclick="stringfyojetos(); resetarcampo() ; lerNomes()" class="jogar" href="html/duelphium.html">Jogar</a>
     </main>
 
     <script src="js/delphium.js"></script>
+    <script src="js/index.js"></script>
 </body>
 
 </html>

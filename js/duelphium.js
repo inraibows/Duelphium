@@ -1,26 +1,28 @@
-let cartas = [
-  { classe: "mago-negro", vida: 2500, ataque: 2500 },
-  { classe: "dragao-negro", vida: 2400, ataque: 2400 },
-  { classe: "dragao-branco", vida: 3000, ataque: 3000 },
-  { classe: "guerreiro", vida: 1800, ataque: 1800 },
-  { classe: "exodia-cabeca", vida: 1000, ataque: 1000, tipo: "exodia" },
-  { classe: "exodia-braco-direito", vida: 200, ataque: 200, tipo: "exodia" },
-  { classe: "exodia-braco-esquerdo", vida: 200, ataque: 200, tipo: "exodia" },
-  { classe: "exodia-perna-direita", vida: 200, ataque: 200, tipo: "exodia" },
-  { classe: "exodia-perna-esquerda", vida: 200, ataque: 200, tipo: "exodia" },
-  { classe: "raio-divino", tipo: "magica", efeito: "dano", valor: 500 },
-  { classe: "cura-sagrada", tipo: "magica", efeito: "cura", valor: 500 },
-  { classe: "pote-da-ganancia", tipo: "magica", efeito: "comprar", valor: 0 }
-]
-var campojogo = [];
-// falta adicionar nessa versao: mais cartas e as imagens nelas, comprar carta compra só uma carta por turno, pode se comprar uma carta, atacar e por uma carta por turno, seria legal refazer a pagina inicial
-for (let l = 0; l < 2; l++) {
-  campojogo[l] = [];
-  for (let c = 0; c < 5; c++) {
-    campojogo[l][c] = null;
+
+
+function recuperarcartas(){
+  let dados = localStorage.getItem("cartas")
+  let cartas = []
+  if (dados != null){
+    cartas = JSON.parse(dados)
   }
+  return(cartas)
 }
-// jeito bizarro de fzr matriz
+
+
+function atualizarcampo(campo) {
+  localStorage.setItem("campojogo", JSON.stringify(campo));
+}
+
+function recuperarcampo(){
+  let dados = localStorage.getItem("campojogo")
+  let campojogo = []
+  if (dados != null){
+    campojogo = JSON.parse(dados)
+  }
+  return(campojogo)
+}
+
 function selecionarCarta(qual, quem) {
   let qualturno = testeturno()
   if (qualturno == quem) {
@@ -32,6 +34,7 @@ function selecionarCarta(qual, quem) {
   }
 }
 function comprarCarta(quem) {
+  let cartas = recuperarcartas()
   let qualturno = testeturno()
   let turno = document.querySelector('#turno')
   let cont = Number(document.querySelector('#contaturno').dataset.valor)
@@ -91,7 +94,8 @@ function deploy(qual, quem, posicao) {
   let mao = [];
   let encontrada = null;
   let linha = 0;
-
+let cartas = recuperarcartas()
+let campojogo = recuperarcampo()
   // restrição: tem que ser o seu turno e você ainda não pode ter lançado carta (turno.dataset.jogou)
   if (qualturno == quem && turno.dataset.jogou != "sim") {
 
@@ -130,11 +134,13 @@ function deploy(qual, quem, posicao) {
         carta.classList.add("vazia");
 
         turno.dataset.jogou = "sim";
+        atualizarcampo(campojogo)
         exodiaObliterar(quem)
         verificarFimDeTurno();
       }
     }
   }
+  atualizarcampo(campojogo)
 }
 function trocarTurno() {
   let turno = document.querySelector('#turno')
@@ -178,7 +184,7 @@ function ataq(qual, quem, posicao) {
   let linhaAlvo = 0;
   let idPlacar = "";
   let fim = false;
-
+  let campojogo = recuperarcampo()
   // tem o mesmo dataset do botao turno pra guardar a informação sobre o ataque, o alvo (quem) tem q ter a classe css ocupado também
   if (qualturno != quem && turno.dataset.atacou != "sim" &&
     qual.classList.contains("ocupada") && atacantes.length > 0) {
@@ -208,6 +214,7 @@ function ataq(qual, quem, posicao) {
         qual.classList.remove(alvo.classe);
         qual.classList.remove("ocupada");
 
+
         // o que passou da vida do monstro vira dano nos pontos de vida do jogador, mesmo que no yu gi oh seja pelo ataque mas fzr oq, nao acho q ficaria intuitivo
         let excedente = 0 - alvo.vida;
         let placar = document.getElementById(idPlacar);
@@ -219,6 +226,7 @@ function ataq(qual, quem, posicao) {
         }
         placar.textContent = pontos;
       }
+          atualizarcampo(campojogo)
 
       // o atacante já atacou, tira a classe css de atacante e checa se o jogo acabou, se nao ele muda o valor de .atacou no dataset do botao pra sinalizar q ja jogou
       zonaAtacante.classList.remove("atacante");
@@ -277,7 +285,9 @@ function fimDeJogo(vencedor) {
     turno.textContent = "O oponente venceu!";
   }
 }
-var dicas = [
+
+function mostrarDica() {
+  var dicas = [
   "Clique no seu baralho para comprar uma carta. Só é possível comprar uma por turno.",
   "Selecione uma carta da sua mão e clique em uma zona livre do seu lado para lançá-la.",
   "Clique em um monstro seu no campo para marcá-lo como atacante e depois no monstro do oponente.",
@@ -285,18 +295,11 @@ var dicas = [
   "Sem ações possíveis? Use o botão do meio para passar o turno.",
   "Se o ataque for maior que a vida do monstro, o que sobrar vira dano nos pontos de vida do oponente.",
   "O dragão branco tem a maior vida do baralho: 3000 pontos.",
-  "Taiwan nao é um país",
   "Exodia, Obliterar!!",
   "Em um conjunto finito, qualquer permutação de elementos pode ser revertida à configuração original!",
-  "Kennedy was assassinated in Dallas at 12:30 p.m. Central Standard Time on November 22, 1963.",
-  "o criador desse jogo divide aniversario com personalidades tais como Anne Hathaway ,Ryan Gosling, Charles Manson",
-  "Esse jogo nao foi programado em Assembly.",
-  " 1 Atm == 10^5 Pa volta true ",
-  "De feliz aniversario a seus amigos e seja uma boa pessoa!!",
   "chega de dicas, voce ja entendeu. JOGA O JOGO!"
 ];
 
-function mostrarDica() {
   let caixa = document.getElementById("caixa-dica");
   let indice = Number(caixa.dataset.indice);
 
@@ -316,6 +319,7 @@ function fecharDica() {
 }
 // descobre qual é a carta por meio de comparar todas as classes das cartas no registro com a propriedade classlist da carta, retorna o objeto
 function descobrirCarta(elemento) { // elemento pode ser qualquer carta
+  let cartas = recuperarcartas()
   let encontrada = null;
 
   for (let i = 0; i < cartas.length; i++) {
@@ -331,7 +335,6 @@ function enviarAoCemiterio(quem, classe) { // classe css guardada no registro e 
   let botao = document.getElementById("cemiterio" + quem);
   let topo = document.getElementById("topo" + quem);
   let contador = document.getElementById("qtd" + quem); //o quem define se o id é do oponente ou seu, o parametro recebe 'me' ou 'op'
-
   // tira a carta que estava por cima, removendo todas as classes das cartas e depois adicionando a especifica no elemento topo do cemiterio
   for (let i = 0; i < cartas.length; i++) {
     topo.classList.remove(cartas[i].classe);
@@ -449,24 +452,44 @@ function aplicarEfeito(magia, quem) {
   }
 }
 function exodiaObliterar(quem) {
-  let cont = 0
-  let who = testeturno()
-  let linha
+  let campojogo = recuperarcampo();
+  let cont = 0;
+  let who = testeturno();
+  let linha;
   if (who == quem) {
     if (quem == 'op') {
-      linha = 0
-    }
-    else {
-      linha = 1
+      linha = 0;
+    } else {
+      linha = 1;
     }
     for (let i = 0; i < campojogo[linha].length; i++) {
-      if (campojogo[linha][i].tipo == "exodia") {
-        cont++
+      if (campojogo[linha][i] != null && campojogo[linha][i].tipo == "exodia") {
+        cont++;
       }
     }
     if (cont == 5) {
-      fimDeJogo(quem)
-
+      fimDeJogo(quem);
     }
   }
 }
+
+function recuperarnomes() {
+  let dados = localStorage.getItem("nomes");
+  let nomes = { me: "Você", op: "Oponente" };
+  if (dados != null) {
+    nomes = JSON.parse(dados);
+  }
+  return nomes;
+}
+
+function mostrarNomes() {
+  let h1me = document.getElementById("nome1");
+  let h1op = document.getElementById("nome2");
+
+  let nomes = recuperarnomes();
+  h1me.textContent = nomes.me;
+  h1op.textContent = nomes.op;
+}
+
+mostrarNomes()
+
